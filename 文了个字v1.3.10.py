@@ -1,15 +1,12 @@
 import pygame, os
 import random as r
 from pygame.locals import *
-
 pygame.init()
 window1 = pygame.display.set_mode(size=(700, 800))
 clock = pygame.time.Clock()
 pygame.mixer.init()
 pygame.display.set_caption('文了个字 Made by MinecraftZXH')
-
 # ================== 加载图片 ==================
-
 W = pygame.image.load('img/无标题.png')
 ccy = pygame.image.load('img/ico.png')
 begin = pygame.image.load('img/BEGIN.png')
@@ -20,10 +17,12 @@ g1_4 = pygame.image.load('img/1-4.png')
 g1_5 = pygame.image.load("img/1-5.png")
 g1_6 = pygame.image.load("img/1-6.png")
 g1_7 = pygame.image.load("img/1-7.png")
+g2_1 = pygame.image.load('img/2-1.png')
 
 qwq = pygame.image.load('img/？.png')
 W1 = pygame.image.load('img/W1.png')
 lose = pygame.image.load('img/lose.png')
+win = pygame.image.load('img/win.png')
 bh1 = pygame.image.load('img/bh1.png')
 bh2 = pygame.image.load('img/bh2.png')
 bh3 = pygame.image.load('img/bh3.png')
@@ -31,6 +30,7 @@ bh4 = pygame.image.load('img/bh4.png')
 bh5 = pygame.image.load('img/bh5.png')
 bh6 = pygame.image.load('img/bh6.png')
 bh7 = pygame.image.load('img/bh7.png')
+bh8 = pygame.image.load('img/bh8.png')
 caimi = pygame.image.load('img/字谜.png')
 jgw = pygame.image.load('jgw/ico_64x64.png')
 # ---------- 第一关资源（bh1） ----------
@@ -122,7 +122,7 @@ duo = pygame.image.load('img/bh2/多.png')
 yan = pygame.image.load('img/bh2/衍.png')
 sheng = pygame.image.load('img/bh2/生.png')
 you4 = pygame.image.load('img/bh2/游.png')
-xi01 = pygame.image.load('img/bh2/戏.png')
+xi101 = pygame.image.load('img/bh2/戏.png')
 
 # ---------- 第三关资源（bh3） ----------
 # 标点
@@ -132,7 +132,7 @@ wan2 = pygame.image.load('img/bh3/玩2.png')
 de1 = pygame.image.load('img/bh3/的1.png')
 de2 = pygame.image.load('img/bh3/的2.png')
 shi011 = pygame.image.load('img/bh3/时1.png')
-shi011 = pygame.image.load('img/bh3/时2.png')
+shi022 = pygame.image.load('img/bh3/时2.png')
 hou1 = pygame.image.load('img/bh3/候1.png')
 hou2 = pygame.image.load('img/bh3/候2.png')
 ke1 = pygame.image.load('img/bh3/可1.png')
@@ -302,7 +302,71 @@ yu_full_6 = pygame.image.load('img/bh6/与.png')
 you_full_6 = pygame.image.load('img/bh6/有.png')
 guan_full_6 = pygame.image.load('img/bh6/关.png')
 o_full_6 = pygame.image.load('img/bh6/哦.png')
-# 第五关数据（句子：想知道开发者模式的密码吗？）
+# 第七关数据（句子：？）
+# ---------- 第七关d新增图片 ----------
+# 汉字双变体（班、群、二、呢）
+ban1 = pygame.image.load('img/bh7/班1.png')
+ban2 = pygame.image.load('img/bh7/班2.png')
+qun1 = pygame.image.load('img/bh7/群1.png')
+qun2 = pygame.image.load('img/bh7/群2.png')
+er1 = pygame.image.load('img/bh7/二1.png')
+er2 = pygame.image.load('img/bh7/二2.png')
+ne1 = pygame.image.load('img/bh7/呢1.png')
+ne2 = pygame.image.load('img/bh7/呢2.png')
+# 完整字
+ban_full = pygame.image.load('img/bh7/班.png')
+qun_full = pygame.image.load('img/bh7/群.png')
+er_full = pygame.image.load('img/bh7/二.png')
+ne_full = pygame.image.load('img/bh7/呢.png')
+# 标点（可复用，也可以独立）
+wenq7 = pygame.image.load('img/bh7/？.png')
+#第八关数据
+# ---------- 第八关资源（bh8） ----------
+# 汉字双变体
+zhu1 = pygame.image.load('img/bh8/主1.png')
+zhu2 = pygame.image.load('img/bh8/主2.png')
+cai1 = pygame.image.load('img/bh8/菜1.png')
+cai2 = pygame.image.load('img/bh8/菜2.png')
+dan1 = pygame.image.load('img/bh8/单1.png')
+dan2 = pygame.image.load('img/bh8/单2.png')
+zhong1_8 = pygame.image.load('img/bh8/中1.png')
+zhong2_8 = pygame.image.load('img/bh8/中2.png')
+de1_8 = pygame.image.load('img/bh8/的1.png')
+de2_8 = pygame.image.load('img/bh8/的2.png')
+wen1_8 = pygame.image.load('img/bh8/问1.png')
+wen2_8 = pygame.image.load('img/bh8/问2.png')
+hao1 = pygame.image.load('img/bh8/号1.png')
+hao2 = pygame.image.load('img/bh8/号2.png')
+qi1_8 = pygame.image.load('img/bh8/其1.png')
+qi2_8 = pygame.image.load('img/bh8/其2.png')
+shi1_8 = pygame.image.load('img/bh8/实1.png')
+shi2_8 = pygame.image.load('img/bh8/实2.png')
+shi01_8 = pygame.image.load('img/bh8/是1.png')
+shi02_8 = pygame.image.load('img/bh8/是2.png')
+you1_8 = pygame.image.load('img/bh8/游1.png')
+you2_8 = pygame.image.load('img/bh8/游2.png')
+xi1_8 = pygame.image.load('img/bh8/戏1.png')
+xi2_8 = pygame.image.load('img/bh8/戏2.png')
+gong1 = pygame.image.load('img/bh8/攻1.png')
+gong2 = pygame.image.load('img/bh8/攻2.png')
+lve1 = pygame.image.load('img/bh8/略1.png')
+lve2 = pygame.image.load('img/bh8/略2.png')
+
+# 完整字
+zhu_full = pygame.image.load('img/bh8/主.png')
+cai_full = pygame.image.load('img/bh8/菜.png')
+dan_full = pygame.image.load('img/bh8/单.png')
+zhong_full_8 = pygame.image.load('img/bh8/中.png')
+de_full_8 = pygame.image.load('img/bh8/的.png')
+wen_full_8 = pygame.image.load('img/bh8/问.png')
+hao_full = pygame.image.load('img/bh8/号.png')
+qi_full_8 = pygame.image.load('img/bh8/其.png')
+shi_full_8 = pygame.image.load('img/bh8/实.png')
+shi0_full_8 = pygame.image.load('img/bh8/是.png')
+you_full_8 = pygame.image.load('img/bh8/游.png')
+xi_full_8 = pygame.image.load('img/bh8/戏.png')
+gong_full = pygame.image.load('img/bh8/攻.png')
+lve_full = pygame.image.load('img/bh8/略.png')
 # ================== 关卡数据定义 ==================
 # 第一关数据
 target_sentence_chars1_1 = ["你", "们", "知", "道", "吗", "？", "这", "其", "实", "是", "个", "文", "字", "游", "戏", "。"]
@@ -332,12 +396,10 @@ char_to_full1_1 = {
     "文": wen0, "字": zi, "游": you, "戏": xi,
     "？": wenq, "。": ju
 }
-
 # 第二关数据（句子：文了个字还有很多衍生游戏）
 target_sentence_chars1_2 = ["文", "了", "个", "字", "还", "有", "很", "多", "衍", "生", "游", "戏"]
 hanzi_list1_2 = ["文", "了", "个", "字", "还", "有", "很", "多", "衍", "生", "游", "戏"]
 punct_list1_2 = []   # 本关没有标点
-
 char_to_variants1_2 = {
     "文": {1: wen11, 2: wen12},
     "了": {1: le1, 2: le2},
@@ -356,7 +418,7 @@ char_to_full1_2 = {
     "文": wen1,
     "了": le,
     "个": ge2,
-    "字": zi01,
+    "字": zi0,
     "还": hai,
     "有": you3,
     "很": hen1,
@@ -364,17 +426,16 @@ char_to_full1_2 = {
     "衍": yan,
     "生": sheng,
     "游": you4,
-    "戏": xi01
+    "戏": xi101
 }
 #第三关数据
 target_sentence_chars1_3 = ['玩','的','时','候','可','能','会','看','到','彩','蛋','提','示','哦']
 hanzi_list1_3 = ['玩','的','时','候','可','能','会','看','到','彩','蛋','提','示','哦']
 punct_list1_3 = []   # 本关没有标点
-
 char_to_variants1_3 = {
     '玩': {1: wan1, 2: wan2},
     "的": {1: de1, 2: de2},
-    "时": {1: shi01, 2: shi02},
+    "时": {1: shi011, 2: shi022},
     "候": {1: hou1, 2: hou2},
     "可": {1: ke1, 2: ke2},
     "能": {1: neng1, 2: neng2},
@@ -384,7 +445,7 @@ char_to_variants1_3 = {
     "彩": {1: cai1, 2: cai2},
     "蛋": {1: dan1, 2: dan2},
     "提": {1: ti1, 2: ti2},
-    "示": {1: shi1, 2: shi2},
+    "示": {1: shi001, 2: shi002},
     "哦": {1: o1, 2: o2}
 }
 char_to_full1_3 = {
@@ -400,14 +461,13 @@ char_to_full1_3 = {
     "彩": cai,
     "蛋": dan,
     "提": ti,
-    "示": shi,
+    "示": shi00,
     "哦": o
 }
 #第四关数据
 target_sentence_chars1_4 = ['在','字','谜','游','戏','中','输','入','作','者','操','作','系','统','吧']
 hanzi_list1_4 = ['在','字','谜','游','戏','中','输','入','作','者','操','作','系','统','吧']
 punct_list1_4 = []   # 本关没有标点
-
 char_to_variants1_4 = {
     '在': {1: zai1, 2: zai2},
     "字": {1: zi01, 2: zi02},
@@ -445,7 +505,6 @@ char_to_full1_4 = {
 target_sentence_chars1_5 = ["想", "知", "道", "开", "发", "者", "模", "式", "的", "密", "码", "吗", "？"]
 hanzi_list1_5 = ["想", "知", "道", "开", "发", "者", "模", "式", "的", "密", "码", "吗"]
 punct_list1_5 = ["？"]
-
 char_to_variants1_5 = {
     "想": {1: xiang1, 2: xiang2},
     "知": {1: zhi1, 2: zhi2},
@@ -480,7 +539,6 @@ char_to_full1_5 = {
 target_sentence_chars1_6 = ["开", "发", "者", "模", "式", "的", "密", "码", "与", "开", "发", "者", "有", "关"]
 hanzi_list1_6 = ["开", "发", "者", "模", "式", "的", "密", "码", "与", "开", "发", "者", "有", "关"]
 punct_list1_6 = []   # 无标点
-
 char_to_variants1_6 = {
     "开": {1: kai1_6, 2: kai2_6},
     "发": {1: fa1_6, 2: fa2_6},
@@ -492,8 +550,8 @@ char_to_variants1_6 = {
     "码": {1: ma1_6, 2: ma2_6},
     "与": {1: yu1_6, 2: yu2_6},
     "有": {1: you1_6, 2: you2_6},
-    "关": {1: guan1_6, 2: guan2_6,
-    "哦": {1: o_full1_6}, 2: o_full2_6},
+    "关": {1: guan1_6, 2: guan2_6},
+    "哦": {1: o_full1_6, 2: o_full2_6}
 }
 char_to_full1_6 = {
     "开": kai_full_6,
@@ -509,6 +567,79 @@ char_to_full1_6 = {
     "关": guan_full_6,
     "哦": o_full_6
 }
+# ---------- 第七关数据 ----------
+target_sentence_chars1_7 = ["在", "字", "谜", "游", "戏", "中", "输", "入", "班", "群", "二", "字", "呢", "？"]
+hanzi_list1_7 = ["在", "字", "字", "谜", "游", "戏", "中", "输", "入", "班", "群", "二", "呢"]   # “字”出现两次
+punct_list1_7 = ["？"]
+char_to_variants1_7 = {
+    "在": {1: zai1, 2: zai2},
+    "字": {1: zi01, 2: zi02},
+    "谜": {1: mi1, 2: mi2},
+    "游": {1: you001, 2: you002},
+    "戏": {1: xi1, 2: xi2},
+    "中": {1: zhong1, 2: zhong2},
+    "输": {1: shu1, 2: shu2},
+    "入": {1: ru1, 2: ru2},
+    "班": {1: ban1, 2: ban2},
+    "群": {1: qun1, 2: qun2},
+    "二": {1: er1, 2: er2},
+    "呢": {1: ne1, 2: ne2},
+    "？": {None: wenq7}
+}
+# 完整字映射
+char_to_full1_7 = {
+    "在": zai,
+    "字": zi0,
+    "谜": mi,
+    "游": you000,
+    "戏": xi,
+    "中": zhong,
+    "输": shu,
+    "入": ru,
+    "班": ban_full,
+    "群": qun_full,
+    "二": er_full,
+    "呢": ne_full,
+    "？": wenq7
+}
+# ---------- 第八关数据 ----------
+target_sentence_chars1_8 = ["主", "菜", "单", "中", "的", "问", "号", "其", "实", "是", "游", "戏", "攻", "略"]
+hanzi_list1_8 = ["主", "菜", "单", "中", "的", "问", "号", "其", "实", "是", "游", "戏", "攻", "略"]
+punct_list1_8 = []   # 没有标点
+
+char_to_variants1_8 = {
+    "主": {1: zhu1, 2: zhu2},
+    "菜": {1: cai1, 2: cai2},
+    "单": {1: dan1, 2: dan2},
+    "中": {1: zhong1_8, 2: zhong2_8},
+    "的": {1: de1_8, 2: de2_8},
+    "问": {1: wen1_8, 2: wen2_8},
+    "号": {1: hao1, 2: hao2},
+    "其": {1: qi1_8, 2: qi2_8},
+    "实": {1: shi1_8, 2: shi2_8},
+    "是": {1: shi01_8, 2: shi02_8},
+    "游": {1: you1_8, 2: you2_8},
+    "戏": {1: xi1_8, 2: xi2_8},
+    "攻": {1: gong1, 2: gong2},
+    "略": {1: lve1, 2: lve2},
+}
+
+char_to_full1_8 = {
+    "主": zhu_full,
+    "菜": cai_full,
+    "单": dan_full,
+    "中": zhong_full_8,
+    "的": de_full_8,
+    "问": wen_full_8,
+    "号": hao_full,
+    "其": qi_full_8,
+    "实": shi_full_8,
+    "是": shi0_full_8,
+    "游": you_full_8,
+    "戏": xi_full_8,
+    "攻": gong_full,
+    "略": lve_full,
+}
 # 当前关卡数据（动态切换）
 current_target_sentence = target_sentence_chars1_1
 current_hanzi_list = hanzi_list1_1
@@ -516,22 +647,18 @@ current_punct_list = punct_list1_1
 current_char_to_variants = char_to_variants1_1
 current_char_to_full = char_to_full1_1
 current_level = 1
-
 # 游戏状态
 game_state = 'menu'          # 'menu', 'select', 'play', 'lose'
 blocks = []
 BLOCK_SIZE = 50
 basket = [None, None, None]
 sentence_progress = []
-
 # 背景和音乐相关
 current_bg = W
 current_bgm = None
-
 # 计时相关
 start_ticks = 0
 time_left = 120
-
 # ================== 工具函数 ==================
 def generate_blocks():
     global blocks
@@ -554,7 +681,6 @@ def generate_blocks():
         extra = r.choices(all_possible, k=need)
         parts.extend(extra)
     r.shuffle(parts)
-
     start_x, start_y = 200, 200
     idx = 0
     for row in range(6):
@@ -565,7 +691,6 @@ def generate_blocks():
             img = current_char_to_variants[ch][var] if var is not None else current_char_to_variants[ch][None]
             blocks.append([x, y, True, ch, var, img])
             idx += 1
-
 def add_to_sentence_by_order(char, img):
     for idx, needed in enumerate(current_target_sentence):
         if sentence_progress[idx] is None:
@@ -575,7 +700,6 @@ def add_to_sentence_by_order(char, img):
             else:
                 return False
     return False
-
 def check_combination():
     global basket
     changed = True
@@ -607,13 +731,11 @@ def check_combination():
                         break
             if changed:
                 break
-
 def reset_game(level):
     global game_state, current_bg, current_bgm, start_ticks, time_left
     global current_target_sentence, current_hanzi_list, current_punct_list
     global current_char_to_variants, current_char_to_full, current_level
     global blocks, basket, sentence_progress
-
     # 根据关卡设置数据
     if level == 1:
         current_target_sentence = target_sentence_chars1_1
@@ -664,31 +786,34 @@ def reset_game(level):
         current_bg = bh6
         current_level = 6
     elif level == 7:
-        current_target_sentence = target_sentence_chars1_4
-        current_hanzi_list = hanzi_list1_4
-        current_punct_list = punct_list1_4
-        current_char_to_variants = char_to_variants1_4
-        current_char_to_full = char_to_full1_4
-        current_bg = bh6
+        current_target_sentence = target_sentence_chars1_7
+        current_hanzi_list = hanzi_list1_7
+        current_punct_list = punct_list1_7
+        current_char_to_variants = char_to_variants1_7
+        current_char_to_full = char_to_full1_7
+        current_bg = bh7
         current_level = 7
-
+    elif level == 8:
+        current_target_sentence = target_sentence_chars1_8
+        current_hanzi_list = hanzi_list1_8
+        current_punct_list = punct_list1_8
+        current_char_to_variants = char_to_variants1_8
+        current_char_to_full = char_to_full1_8
+        current_bg = bh8
+        current_level = 8
     generate_blocks()
     basket = [None, None, None]
     sentence_progress = [None] * len(current_target_sentence)
-
     # 背景音乐
     current_bgm = 'music/msc.mp3'
     if current_bgm:
         pygame.mixer.music.load(current_bgm)
         pygame.mixer.music.play(-1)
-
     game_state = 'play'
     start_ticks = pygame.time.get_ticks()
     time_left = 120
-
 def stop_music():
     pygame.mixer.music.stop()
-
 # ================== EVENT处理 ==================
 def Event():
     global game_state, current_bg
@@ -698,13 +823,15 @@ def Event():
             exit()
         elif event.type == MOUSEBUTTONDOWN and event.button == 1:
             x, y = event.pos
-
             if game_state == 'menu':
                 begin_rect = begin.get_rect(topleft=(225, 650))
                 if begin_rect.collidepoint(x, y):
                     game_state = 'select'
                     current_bg = W
                     print("进入选择界面")
+                qwq_rect = qwq.get_rect(topleft=(0, 100))
+                if qwq_rect.collidepoint(x, y):
+                    os.system("？.bat")
                 ccy_rect = ccy.get_rect(topleft=(0, 228))
                 if ccy_rect.collidepoint(x, y):
                     os.system("ccy.bat")
@@ -717,6 +844,7 @@ def Event():
                 if jgw_rect.collidepoint(x, y):
                     os.system("jgw.bat")
                     quit()
+
             elif game_state == 'select':
                 g1_1_rect = g1_1.get_rect(topleft=(20, 100))
                 if g1_1_rect.collidepoint(x, y):
@@ -746,8 +874,10 @@ def Event():
                 if g1_7_rect.collidepoint(x, y):
                     reset_game(7)
                     print("进入游戏 - 关卡7")
-
-
+                g2_1_rect = g2_1.get_rect(topleft=(20, 200))
+                if g2_1_rect.collidepoint(x, y):
+                    reset_game(8)
+                    print("进入游戏 - 关卡8(2-1)")
             elif game_state == 'play':
                 for block in blocks:
                     if block[2]:
@@ -769,19 +899,19 @@ def Event():
             elif game_state == 'lose':
                 game_state = 'menu'
                 current_bg = W
-
+            elif game_state == 'win':
+                game_state = 'menu'
+                current_bg = W
 # ================== 主循环 ==================
 while True:
     Event()
     window1.blit(current_bg, (-60, 0))
-
     if game_state == 'menu':
         window1.blit(begin, (225, 650))
         window1.blit(qwq, (0, 100))
         window1.blit(caimi, (0, 164))
         window1.blit(ccy, (0, 228))
         window1.blit(jgw, (0, 292))
-
     elif game_state == 'select':
         window1.blit(g1_1, (20 ,  100))
         window1.blit(g1_2, (120, 100))
@@ -790,7 +920,8 @@ while True:
         window1.blit(g1_5, (420, 100))
         window1.blit(g1_6, (520, 100))
         window1.blit(g1_7, (620, 100))
-
+        #2-?
+        window1.blit(g2_1, (20 , 200))
     elif game_state == 'play':
         elapsed = (pygame.time.get_ticks() - start_ticks) / 1000
         time_left = max(0, 120 - elapsed)
@@ -798,7 +929,6 @@ while True:
             game_state = 'lose'
             stop_music()
             continue
-
         # 绘制方块
         for block in blocks:
             if block[2]:
@@ -806,36 +936,31 @@ while True:
                 img = block[5]
                 rect = img.get_rect(center=(block[0] + BLOCK_SIZE//2, block[1] + BLOCK_SIZE//2))
                 window1.blit(img, rect)
-
         # 绘制句子区域
         start_x, start_y = 50, 20
         for idx, img in enumerate(sentence_progress):
             if img is not None:
                 window1.blit(img, (start_x + idx * 40, start_y))
-
         # 绘制篮子
         basket_x, basket_y = 250, 700
         for i in range(3):
             pygame.draw.rect(window1, (200, 200, 200), (basket_x + i*60, basket_y, 50, 50), 2)
             if basket[i] is not None:
                 window1.blit(basket[i][2], (basket_x + i*60, basket_y))
-
         # 绘制倒计时文本
         font = pygame.font.Font(None, 36)
         minutes = int(time_left) // 60
         seconds = int(time_left) % 60
-        #显示时间
-        
+        #显时间
         timer_surf = font.render(f"{minutes:02d}:{seconds:02d}", True, (0, 0, 0))
         window1.blit(timer_surf, (580, 20))
-
         # 胜利检测
         if all(img is not None for img in sentence_progress):
             font_big = pygame.font.Font(None, 74)
             win_text = font_big.render("胜利!", True, (255, 0, 0))
             window1.blit(win_text, (250, 400))
-            game_state = 'menu'
-            current_bg = W
+            game_state = 'win'
+            current_bg = win
             stop_music()
             os.system('cls')
 
